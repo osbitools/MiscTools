@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Hello {{ client.name }},<br>
+    <br>
+    Thank you for interest in {{ product.name }}</our>.<br>
+    Our team will be happy to help you solving any customization and system integration
+    problems related this product.<br>
+    <br>
+    Below are credentials for {{ product.name }} {{ exp_days }} days evaluation account:<br>
+    <br>
+    User: <b>{{ client.id }}</b><br>
+    Password: <b>{{ client.password }}</b><br>
+    <br>
+    URL <ng-pluralize count="product.tools.length"
+                 when="{'0': 'link',
+                     'other': 'links'}"></ng-pluralize>
+    for access {{ exp_days }} days evaluation version of {{ product.name }} <ng-pluralize count="product.tools.length"
+                 when="{'0': 'is',
+                     'other': 'are'}"></ng-pluralize> next:<br>
+    <ul class="tools" ng-repeat="tool in product.tools">
+      <li>{{ tool.name }} - <a class="moz-txt-link-freetext"
+        href="{{ product.get_tool_url(tool.id, client.id) }}">{{ product.get_tool_url(tool.id, client.id) }}</a></li>
+    </ul>
+    <br>Please note that account already active and the last day for access
+    is <b>{{ client.expired | date:'longDate' }}</b><br>
+    <br>
+    <ng-pluralize count="product.tutorials.length"
+                 when="{'0': 'Tutorial',
+                     'other': 'Tutorials'}">
+    </ng-pluralize>:
+    <ul class="tutorials" ng-repeat="tutorial in product.tutorials">
+      <li>{{ tutorial.name }} - <a class="moz-txt-link-freetext"
+        href="{{ tutorial.url }}">{{ tutorial.url }}</a></li>
+    </ul>
+
+    <br>
+    For any customization/technical related questions please fill free
+    to contact our {{ product.manager.title }} <b>{{ product.manager.name }}</b> directly by
+    email <b><a class="moz-txt-link-abbreviated"
+        href="mailto:mailto:{{ product.manager.email }}">{{ product.manager.email }}</a></b> or
+    by phone <b>{{ company.phone }} ext {{ product.manager.ext }}<br>
+      <br>
+    </b>{{ company.sales_rep }}<br>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+{{ product.name }} Sales Team
+
+Email: <a class="moz-txt-link-abbreviated" href="mailto:{{ company.email }}">{{ company.email }}</a>
+Phone: {{ company.phone }}
+Site: <a class="moz-txt-link-freetext" href="{{ company.site }}">{{ company.site }}</a></pre>
+  </body>
+</html>

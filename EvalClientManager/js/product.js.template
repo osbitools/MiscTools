@@ -1,0 +1,67 @@
+/*
+ * Open Source Business Intelligence Tools - http://www.osbitools.com/
+ * 
+ * Copyright 2016 IvaLab Inc. and by respective contributors (see below).
+ * 
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ * Date: 2016-02-02
+ * 
+ * Contributors:
+ * 
+ */
+
+/**
+ * Object that holds Product constants and related logic
+ * 
+ * @author Igor Peonte 
+ 
+ * Usage: 
+ * 1. Simply copy project.js.template -> project.js and put real value into function below
+ * 2. Create new object (YourProduct) and overwrite required method in case 
+ *      the logic of composing url is different or extra processing required
+ */
+
+function Product(company) {
+  this.company = company;
+  
+  // Official product name
+  this.name = "[Product Name]";
+  
+  // Name of tools/modules that needs to be identified as unique URL
+  this.tools = [{
+    "id": "product_tool_1",
+    "name": "[Product Tool 1]"
+  }, {
+    "id": "product_tool_2",
+    "name": "[Product Tool 2]"
+  }];
+  
+  // List of tutorials
+  this.tutorials = [{
+    "name": "[Product Tutorial 1]",
+    "url": "http://www.example.com/tutorials/1",
+  }, {
+    "name": "[Product Tutorial 2]",
+    "url": "http://www.example.com/tutorials/2",
+  },{
+    "name": "[Product Tutorial 3]",
+    "url": "http://www.example.com/tutorials/3",
+  }];
+  
+  // Product manager
+  this.manager = {
+    "name": "[Manager Name]",
+    "title": "[Product Manager]",
+    "email": "manager@" + this.company.domain,
+    "ext": 222
+  };
+}
+
+/**
+ * Compose tool url 
+ */
+Product.prototype.get_tool_url = function(tool_id, client_id) {
+  return this.company.app + client_id + "/" + tool_id + "/";
+};

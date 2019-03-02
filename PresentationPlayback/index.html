@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+   
+  Copyright 2014-2016 IvaLab Inc. and by respective contributors (see below).
+  
+  Released under the MIT license
+  http://opensource.org/licenses/MIT
+ 
+  Date: 2016-02-02
+  
+  Contributors:
+  
+-->
+<html>
+<head>
+  <title>Presentation Playback</title>
+  <link rel="stylesheet" type="text/css" href="css/pp.css" />
+  
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/popcorn-complete.min.js"></script>
+
+  <script type="text/javascript" src="js/pp.js"></script>
+  
+  <script>
+    jQuery(document).ready(function() {  
+      var pp = new PresentationPlayback("playback");
+      pp.load("sys_overview");
+    });
+  </script>
+  
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    #playback {
+      /*
+      height: 400px;
+      width: 600px;
+      */
+     /*
+     height: 100%;
+     */
+    
+    width: 1000px;
+    }
+  </style>
+</head>
+<body>
+  <div id="playback"><!----></div>
+</body>
+</html>

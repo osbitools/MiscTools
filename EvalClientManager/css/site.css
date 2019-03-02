@@ -1,0 +1,38 @@
+table.clients {
+  margin: 0;
+  padding: 0;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+h2 {
+  text-align: center;
+}
+
+table.clients td, table.clients th {
+  padding: 2px;
+  border: 1px solid silver;
+}
+
+table.clients td.links, td.pwd {
+  white-space: nowrap;
+}
+
+table.clients td.pwd button.ng-binding {
+  height: 19px;
+  font-size: 11px;
+  margin-left: 5px;
+}
+
+table.clients td.ctrl-btns {
+  padding: 2px;
+  text-align: right;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.ui-links a:first-child {
+  padding-right: 5px;
+}

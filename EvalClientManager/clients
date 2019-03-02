@@ -1,0 +1,28 @@
+{
+  "clients": [
+	  {
+  		"id": "demo1",
+  		"name": "Demo 1",
+  		"password": "1234",
+  		"email": "demo1@example.com",
+  		"started": 1435723200000,
+  		"expired": 1438315200000
+    },
+    {
+		  "id": "demo2",
+      "name": "Demo 2",
+      "password": "5678",
+      "email": "demo2@example.com",
+      "started": 1455253200000,
+      "expired": 1457845200000
+    },
+    {
+      "id": "demo3",
+      "name": "Demo 3",
+      "password": "9012",
+      "email": "demo3@example.com",
+      "started": 1457067600000,
+      "expired": 1459656000000
+    }
+  ]
+}

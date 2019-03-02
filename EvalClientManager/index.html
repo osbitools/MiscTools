@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+  Open Source Business Intelligence Tools - http://www.osbitools.com/
+ 
+  Copyright 2014-2016 IvaLab Inc. and by respective contributors (see below).
+  
+  Released under the MIT license
+  http://opensource.org/licenses/MIT
+ 
+  Date: 2016-02-02
+  
+  Contributors:
+  
+-->
+<html>
+<head>
+  <title>Client Manager</title>
+  <meta name="author" content="Igor Peonte">
+  
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" >
+  <link rel="stylesheet" type="text/css" href="css/site.css" />
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-resource.min.js"></script>
+  <script type="text/javascript" src="js/ui-bootstrap-custom-tpls-1.1.2.min.js"></script>
+  
+  <script type="text/javascript" src="js/company.js"></script>
+  <script type="text/javascript" src="js/product.js"></script>
+  <script type="text/javascript" src="js/eval_client.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body ng-app="ClientManager" ng-controller="ClientManagerController">
+  <h2>Evaluation Clients Manager</h2>
+  <table class="clients">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Started</th>
+      <th>Expired Date</th>
+      <th>Unix Time</th>
+      <th>Links</th>
+    </tr>
+    <tr ng-repeat="client in clients" 
+        ng-class="{new: client.is_new}" >
+      <td>
+        <div ng-show="!client.is_new">{{ client.id }}</div>
+        <div ng-show="client.is_new">
+          <input ng-model="client.id" ng_pattern="id_regex" 
+                                    maxlength="15" size="15" />
+        </div>
+      </td>
+      <td>
+        <div ng-show="!client.is_new">{{ client.name }}</div>
+        <div ng-show="client.is_new">
+          <input ng-model="client.name" 
+                  ng_pattern="id_regex" maxlength="15" size="15" />
+        </div>
+      </td>
+      <td>
+        <div ng-show="!client.is_new">{{ client.email }}</div>
+        <div ng-show="client.is_new">
+          <input ng-model="client.email"
+                  ng_pattern="email_regex" />
+        </div>
+      </td>
+      <td class="pwd">
+        <div ng-show="!client.is_new" class="pwd">
+          <span ng-show="client.pwd" class="ng-hide">{{ client.pwd }}</span>
+          <span ng-show="!client.pwd">*****</span>
+          <button ng-click="show_pwd($index)" 
+              ng-init="client.btext='Show'">{{ client.btext }}</button>
+        </div>
+        <div ng-show="client.is_new">
+          <input type="text" ng-model="client.password" maxlength="6" size="6" />
+          <input type="button" ng-click="regen_pwd(client)" value="Regenerate" />
+        </div>
+      </td>
+      <td>{{ client.started | date:'longDate' }}</td>
+      <td>{{ client.expired | date:'longDate' }}</td>
+      <td>{{ (client.expired + 86400000)/1000 }}</td>
+      <td class="links">
+        <div ng-show="!client.is_new" 
+                class="ui-links">
+            <a ng-repeat="tool in product.tools" href="{{ product.get_tool_url(tool.id, client.id) }}"
+                       target="_blank">{{ tool.name }}</a>
+          </div>
+        </div>
+        <div ng-show="client.is_new">
+          <button ng-click="show_client_email(client)" 
+              ng-disabled="!client.id || !client.name || !client.email" >Preview & Save</button>
+          <button ng-click="cancel_new_client($index)" >Cancel</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="ctrl-btns" colspan="8">
+        <button ng-click="add_client()">Add</button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Modal window with client email -->
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">E-Mail to client</h3>
+    </div>
+    <div class="modal-body" ng-include="'client_email.html'">
+        
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+  </script>
+
+</body>
+</html>

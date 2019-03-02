@@ -1,0 +1,32 @@
+/*
+ * Open Source Business Intelligence Tools - http://www.osbitools.com/
+ * 
+ * Copyright 2016 IvaLab Inc. and by respective contributors (see below).
+ * 
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ * Date: 2016-02-02
+ * 
+ * Contributors:
+ * 
+ */
+
+/**
+ * Object that holds Company information constants and related logic
+ * 
+ * @author Igor Peonte
+ 
+ * Usage: 
+ * 1. Simply copy company.js.template -> company.js and put real value into function below
+ */
+
+function Company() {
+  this.domain = "example.com";
+  this.phone" = "1-800-123-4567";
+  this.sales_rep" = "[Sales Rep Name];
+  
+  this.app = "https://app." + this.domain + "/";
+  this.site = "http://www." + this.domain + "/";
+  this.email = "sales@" + this.domain;
+}  
